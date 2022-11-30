@@ -1,38 +1,16 @@
-def gv
-
 pipeline {
-    agent any
-    stages {
-        stage("init") {
-            steps {
-                script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building jar"
-                    //gv.buildJar()
-                }
-            }
-        }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building image"
-                    //gv.buildImage()
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-                script {
-                    echo "deploying"
-                    //gv.deployApp()
-                }
-            }
-        }
-    }   
+	agent any
+	stages {
+	   stage("build"){
+	      steps {
+	         sh "mvn clean install"
+	      }
+
+	   }
+	   stage("deployment") {
+	      steps {
+	        sh "docker build -t myfirstfile:1.0 ."
+	      }
+	   }
+	}
 }
