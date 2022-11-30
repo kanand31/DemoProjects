@@ -1,6 +1,4 @@
-FROM ubuntu
+FROM tomcat
 EXPOSE 8080
-RUN   apt-get update && apt-get install openjdk-11-jre-headless -y
-COPY ./target/java-maven-app-*.jar /usr/app/
-WORKDIR /usr/app
+COPY ./target/java-maven-app-*.jar $CATALINA_HOME/webapps
 CMD java -jar java-maven-app-*.jar
