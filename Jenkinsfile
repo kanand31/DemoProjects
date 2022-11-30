@@ -12,7 +12,7 @@ pipeline {
 	   }
 	   stage("deployment") {
 	      steps {
-	        sh "docker build -t myfirstfile:1.0 ."
+	        sh "docker build -t mynewfile:1.0 ."
 	      }
 	   }
 	}
